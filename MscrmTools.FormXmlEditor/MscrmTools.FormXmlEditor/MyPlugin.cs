@@ -21,27 +21,30 @@ namespace MscrmTools.FormXmlEditor
         ExportMetadata("BackgroundColor", "#606060"),
         ExportMetadata("PrimaryFontColor", "White"),
         ExportMetadata("SecondaryFontColor", "White")]
-    public class MyPlugin : PluginBase
+    public class MyPlugin : PluginBase, IPayPalPlugin
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public MyPlugin()
+        {
+            // If you have external assemblies that you need to load, uncomment the following to
+            // hook into the event that will fire when an Assembly fails to resolve
+            // AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolveEventHandler);
+        }
+
+        public string DonationDescription => "Donation for Form XML Editor";
+        public string EmailAccount => "tanguy92@hotmail.com";
+
         public override IXrmToolBoxPluginControl GetControl()
         {
             return new MyPluginControl();
         }
 
         /// <summary>
-        /// Constructor 
-        /// </summary>
-        public MyPlugin()
-        {
-            // If you have external assemblies that you need to load, uncomment the following to 
-            // hook into the event that will fire when an Assembly fails to resolve
-            // AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolveEventHandler);
-        }
-
-        /// <summary>
         /// Event fired by CLR when an assembly reference fails to load
         /// Assumes that related assemblies will be loaded from a subfolder named the same as the Plugin
-        /// For example, a folder named Sample.XrmToolBox.MyPlugin 
+        /// For example, a folder named Sample.XrmToolBox.MyPlugin
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>

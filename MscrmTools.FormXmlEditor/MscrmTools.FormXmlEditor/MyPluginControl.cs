@@ -11,7 +11,7 @@ using XrmToolBox.Extensibility.Interfaces;
 
 namespace MscrmTools.FormXmlEditor
 {
-    public partial class MyPluginControl : PluginControlBase, IShortcutReceiver
+    public partial class MyPluginControl : PluginControlBase, IShortcutReceiver, IGitHubPlugin, IPayPalPlugin
     {
         private FormSelectionControl fsForm;
         private bool isCtrlM, isCtrlK;
@@ -34,6 +34,12 @@ namespace MscrmTools.FormXmlEditor
             fsForm.Show(dpMain, DockState.DockLeft);
             tsForm.Show(dpMain, DockState.DockLeft);
         }
+
+        public string DonationDescription => "Donation for Form XML Editor";
+        public string EmailAccount => "tanguy92@hotmail.com";
+        public string RepositoryName => "MscrmTools.FormXmlEditor";
+
+        public string UserName => "MscrmTools";
 
         #region IShortcutReceiver
 
