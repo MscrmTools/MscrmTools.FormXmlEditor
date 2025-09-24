@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.dpMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tssbLoadTables = new System.Windows.Forms.ToolStripSplitButton();
             this.tsmiLoadAllTables = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbSaveForm = new System.Windows.Forms.ToolStripButton();
             this.tsbPublishEntity = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveAndPublish = new System.Windows.Forms.ToolStripButton();
-            this.dpMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.tsbReloadForms = new System.Windows.Forms.ToolStripButton();
             this.toolStripMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,13 +49,35 @@
             this.toolStripSeparator1,
             this.tsbSaveForm,
             this.tsbPublishEntity,
-            this.tsbSaveAndPublish});
+            this.tsbSaveAndPublish,
+            this.toolStripSeparator2,
+            this.tsbReloadForms});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
             this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.toolStripMenu.Size = new System.Drawing.Size(1453, 39);
             this.toolStripMenu.TabIndex = 4;
             this.toolStripMenu.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // dpMain
+            // 
+            this.dpMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dpMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow;
+            this.dpMain.Location = new System.Drawing.Point(0, 39);
+            this.dpMain.Name = "dpMain";
+            this.dpMain.Size = new System.Drawing.Size(1453, 903);
+            this.dpMain.TabIndex = 5;
+            this.dpMain.ActiveDocumentChanged += new System.EventHandler(this.dpMain_ActiveDocumentChanged);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // tssbLoadTables
             // 
@@ -73,11 +97,6 @@
             this.tsmiLoadAllTables.Size = new System.Drawing.Size(189, 26);
             this.tsmiLoadAllTables.Text = "Load all tables";
             this.tsmiLoadAllTables.Click += new System.EventHandler(this.tsmiLoadAllTables_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // tsbSaveForm
             // 
@@ -109,15 +128,16 @@
             this.tsbSaveAndPublish.Text = "Save and publish";
             this.tsbSaveAndPublish.Click += new System.EventHandler(this.tsbSaveAndPublish_Click);
             // 
-            // dpMain
+            // tsbReloadForms
             // 
-            this.dpMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dpMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow;
-            this.dpMain.Location = new System.Drawing.Point(0, 39);
-            this.dpMain.Name = "dpMain";
-            this.dpMain.Size = new System.Drawing.Size(1453, 903);
-            this.dpMain.TabIndex = 5;
-            this.dpMain.ActiveDocumentChanged += new System.EventHandler(this.dpMain_ActiveDocumentChanged);
+            this.tsbReloadForms.Enabled = false;
+            this.tsbReloadForms.Image = global::MscrmTools.FormXmlEditor.Properties.Resources.Refresh;
+            this.tsbReloadForms.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbReloadForms.Name = "tsbReloadForms";
+            this.tsbReloadForms.Size = new System.Drawing.Size(136, 36);
+            this.tsbReloadForms.Text = "Reload Forms";
+            this.tsbReloadForms.ToolTipText = "Reload Forms for current table";
+            this.tsbReloadForms.Click += new System.EventHandler(this.tsbReloadForms_Click);
             // 
             // MyPluginControl
             // 
@@ -145,5 +165,7 @@
         private System.Windows.Forms.ToolStripButton tsbPublishEntity;
         private System.Windows.Forms.ToolStripButton tsbSaveForm;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsbReloadForms;
     }
 }

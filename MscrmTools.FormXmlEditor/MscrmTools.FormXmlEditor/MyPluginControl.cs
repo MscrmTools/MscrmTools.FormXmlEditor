@@ -227,6 +227,22 @@ namespace MscrmTools.FormXmlEditor
 
         private void FsForm_FormSelected(object sender, FormSelectionEventArgs e)
         {
+            var existingDoc = dpMain.Documents.OfType<FormEditorControl>().FirstOrDefault(d => d.Form.Form.Id == e.SelectedForm.Form.Id);
+            if (existingDoc != null)
+            {
+                if (existingDoc.IsDirty &&
+                DialogResult.No == MessageBox.Show(this, "Do you want to reload the form? \n\nYou will loose your changes", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    return;
+                }
+
+                e.SelectedForm.Document = existingDoc;
+
+                existingDoc.Form = e.SelectedForm;
+                existingDoc.Show(dpMain, DockState.Document);
+                return;
+            }
+
             var formCtrl = new FormEditorControl
             {
                 Form = e.SelectedForm,
@@ -275,6 +291,7 @@ namespace MscrmTools.FormXmlEditor
                     }
 
                     tsForm.ShowTables();
+                    tsbReloadForms.Enabled = false;
                 }
             });
         }
@@ -340,6 +357,11 @@ namespace MscrmTools.FormXmlEditor
                     dpMain_ActiveDocumentChanged(dpMain, new EventArgs());
                 }
             });
+        }
+
+        private void tsbReloadForms_Click(object sender, EventArgs e)
+        {
+            TsForm_TableSelected(tsForm, new TableSelectionEventArgs { SelectedTable = tsForm.SelectedTable });
         }
 
         private void tsbSaveAndPublish_Click(object sender, EventArgs e)
@@ -446,6 +468,8 @@ namespace MscrmTools.FormXmlEditor
 
                     fsForm.ShowForms();
                     fsForm.Show(dpMain, DockState.DockLeft);
+
+                    tsbReloadForms.Enabled = true;
                 }
             });
         }

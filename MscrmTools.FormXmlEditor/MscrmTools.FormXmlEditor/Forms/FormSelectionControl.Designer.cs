@@ -62,6 +62,7 @@
             this.lvForms.View = System.Windows.Forms.View.Details;
             this.lvForms.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvForms_ColumnClick);
             this.lvForms.SelectedIndexChanged += new System.EventHandler(this.lvForms_SelectedIndexChanged);
+            this.lvForms.DoubleClick += new System.EventHandler(this.lvForms_DoubleClick);
             // 
             // columnHeader1
             // 

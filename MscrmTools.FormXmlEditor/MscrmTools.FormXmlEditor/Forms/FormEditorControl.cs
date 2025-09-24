@@ -14,6 +14,7 @@ namespace MscrmTools.FormXmlEditor.Forms
     public partial class FormEditorControl : DockContent
     {
         private readonly FindReplace findReplace;
+        private FormInfo _form;
 
         public FormEditorControl()
         {
@@ -29,7 +30,15 @@ namespace MscrmTools.FormXmlEditor.Forms
 
         public event EventHandler ContentChanged;
 
-        public FormInfo Form { get; set; }
+        public FormInfo Form
+        {
+            get { return _form; }
+            set
+            {
+                _form = value;
+                LoadForm();
+            }
+        }
 
         public bool IsDirty => Form.IsDirty;
 

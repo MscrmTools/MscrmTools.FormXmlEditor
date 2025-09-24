@@ -92,6 +92,16 @@ namespace MscrmTools.FormXmlEditor.Forms
             lvForms.ListViewItemSorter = new ListViewItemComparer(e.Column, lvForms.Sorting);
         }
 
+        private void lvForms_DoubleClick(object sender, EventArgs e)
+        {
+            if (lvForms.SelectedItems.Count == 0) return;
+
+            FormSelected?.Invoke(this, new FormSelectionEventArgs
+            {
+                SelectedForm = (FormInfo)lvForms.SelectedItems[0].Tag
+            });
+        }
+
         private void lvForms_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvForms.SelectedItems.Count == 0) return;
